@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bulebule</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-on:click="doParent">
+            <button v-on:click="doThis">事件冒泡</button>
+            <button v-on:click.stop="doThis">阻止事件冒泡</button>
+        </div>
+        <div v-on:click.capture="doParent">
+            <button v-on:click="doThis">event capture</button>
+        </div>
+        <button v-on:click.once="doThis">only once</button>
+    </div>
+    <script>
+    var vm=new Vue({
+        el:'#app',
+        methods:{
+            doParent(){
+                console.log('I am Parent click event')
+            },
+            doThis(){
+                console.log('I am this click event')
+            }
+        }
+    })
+    </script>
+</body>
+</html>
